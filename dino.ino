@@ -56,6 +56,8 @@ void setup() {
  
   pinMode(buzzer, OUTPUT); 
  
+
+  //  generating characters
   lcd.init(); 
   lcd.backlight(); 
   lcd.createChar(0, DINO_STOP_PART_1); 
@@ -68,6 +70,8 @@ void setup() {
   lcd.createChar(7, TWO_BRANCHES_PART_2); 
 } 
 void loop() { 
+
+  //  tracking a long jump
   if (millis() > clock5 + period_5 && currsignal == 1) {
     lcd.setCursor(1, 0); 
     lcd.print("  "); 
@@ -77,6 +81,7 @@ void loop() {
     cd = 1;
   }
 
+  //  feet animation flags
   if (millis() > clock1 + period_2) { 
     clock1 = millis(); 
     if (flag == 1) { 
@@ -89,7 +94,8 @@ void loop() {
  
  
   } 
- 
+  
+  //  update of branches and game acceleration
   if (millis() > clock2 + period_2) { 
     clock2 = millis(); 
  
@@ -118,6 +124,7 @@ void loop() {
     a = 1; 
   } 
  
+  //  drawing feet animation
   if (d == 0) { 
     if (flag == 1) { 
       lcd.setCursor(dino_col_1, dino_row); 
@@ -133,6 +140,7 @@ void loop() {
     } 
   } 
  
+ //   Placing obstacles randomly
   if (a == 1) { 
  
     if (randomnum == 1) { 
@@ -168,7 +176,7 @@ void loop() {
   } 
    
  
-  //  Game over 
+  //  Game over if collision
   if (currsignal == 1 && (col_branch == 1 || col_branch == 2 || birdcol == 1 || birdcol == 2) && row_branch == 0 ) { 
     int note[] = {200, 150}; 
     for (int i = 0; i < 2; i++) { 
@@ -194,6 +202,7 @@ void loop() {
  
   } 
  
+ //   Additional game over conditions
   if ((col_branch == b || col_branch == c) && row_branch == 1) { 
     int note[] = {200, 150}; 
     for (int i = 0; i < 2; i++) { 
@@ -219,6 +228,7 @@ void loop() {
     period_2 = 100; 
   } 
  
+  //    Jump logic
   if (currsignal == 1 && cd == 0) { 
  
     b = 50;  
@@ -234,7 +244,8 @@ void loop() {
     lcd.write(byte(2));
     lcd.setCursor(dino_col_2, 0);
     lcd.write(byte(3));
- 
+
+    //    Sound signal 
     if (millis() > clock4 + period_4) {  
       clock4 = millis(); 
  
