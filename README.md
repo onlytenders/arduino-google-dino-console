@@ -1,6 +1,6 @@
 # 🦖 Google Dino Gaming Console (Arduino Nano)
 
-> 🇷🇺 [Версия на русском снизу](#-russian-version)
+> 🇷🇺 [Версия на русском снизу](#-русская-версия)
 
 ## 🇬🇧 English version
 
